@@ -1,0 +1,19 @@
+auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+#allow-hotplug wlan0
+#iface wlan0 inet manual
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+#iface default inet dhcp
+
+
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+  wpa-ssid "YOUR_SSID_HERE"
+  # Find out with 
+  #   wpa_passphrase My_WiFi_SSID mypassword
+  wpa-psk abcde2343872384abcd23874abcde293483abcde238476abcd238746
+

@@ -1,0 +1,8 @@
+mode = 800x600
+pixelformat = ARGB
+layer-buffer-mode = backvideo
+always-indirect
+linux-input-force
+linux-input-touch-abs
+system = egl
+wm-fullscreen-updates
