@@ -32,3 +32,37 @@ sudo apt-get install gstreamer
 sudo apt-get install gstreamer-tools
 sudo apt-get install gstreamer0.10-plugins-bad 
 sudo apt-get install gstreamer0.10-plugins-good
+
+sudo apt-get install php5-common php5-cgi php5 php5-mysql
+sudo lighty-enable-mod fastcgi-php
+sudo service lighttpd force-reload
+sudo chown www-data:www-data /var/www
+sudo chmod 775 /var/www
+sudo usermod -a -G www-data pi
+
+# chown nobody:nobody smarty/templates_c
+# chown nobody:nobody smarty/cache
+# chmod 775 smarty/templates_c
+# chmod 775 smarty/cache
+
+#1 sudo apt-get install libjpeg8-dev
+#1 sudo apt-get install imagemagick
+#1 sudo apt-get install libv4l-dev
+#1 cd /usr/include/linux
+#1 sudo ln -s ../libv4l1-videodev.h videodev.h
+#1 cd -
+#1 wget "http://downloads.sourceforge.net/project/mjpg-streamer/mjpg-streamer/Sourcecode/mjpg-streamer-r63.tar.gz"
+#1 tar xvzf mjpg-streamer-r63.tar.gz
+#1 cd mjpg-streamer-r63
+#1 make
+#1 sudo cp input_* output_* /usr/local/lib/
+#1 sudo cp mjpg_streamer /usr/local/bin/
+
+#2 sudo apt-get install subversion libv4l-dev libjpeg8-dev imagemagick
+#2 cd /tmp 
+#2 svn co https://mjpg-streamer.svn.sourceforge.net/svnroot/mjpg-streamer mjpg-streamer
+#2 cd mjpg-streamer/mjpg-streamer
+#2 make USE_LIBV4L2=true clean all
+#2 make DESTDIR=/usr install
+
+mkdir /tmp/stream
