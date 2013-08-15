@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+### BEGIN INIT INFO
+# Provides:          create-tmpfs-dirs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Required-Start:  
+# Required-Stop:   
+# Short-Description: Create /var/log/lighttpd directory on tmpfs at startup
+# Description:       Create /var/log/lighttpd directory on tmpfs at startup
+### END INIT INFO
+
+DIR=/var/log/lighttpd
+USER=www-data:www-data
+
+#
+# main()
+#
+case "${1:-''}" in
+  start)
+    # create the /var/log/lighttpd needed by webserver
+    if [ ! -d ${DIR} ]; then
+      mkdir -p ${DIR}
+      chown ${USER} ${DIR}
+      chmod 755 ${DIR}
+    fi
+    ;;
+  stop)
+    ;;
+  restart)
+   ;;
+  reload|force-reload)
+   ;;
+  status)
+   ;;
+  *)
+   echo "Usage: $SELF start"
+   exit 1
+   ;;
+esac

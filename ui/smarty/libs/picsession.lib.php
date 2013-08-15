@@ -15,11 +15,15 @@ class PicSession {
     * class constructor
     */
     function __construct($picSessionId) {
-
         $this->id = $picSessionId;
         // instantiate the template object
         $this->tpl = new PicSession_Smarty;
-
+        $this->tpl->assign('key_select', '');
+        $this->tpl->assign('key_up', '');
+        $this->tpl->assign('key_down', '');
+        $this->tpl->assign('key_left', '');
+        $this->tpl->assign('key_right', '');
+        $this->tpl->assign('key_menu', '');
     }
     
     function displayMenu() {

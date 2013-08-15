@@ -4,6 +4,7 @@
   {block name=head}{/block}
 </head>
 <body>
+<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
 <div style="display:none">
 	<a accesskey="s" href="{$SCRIPT_NAME}?action={$key_select}">{$key_select}</a>
 	<a accesskey="w" href="{$SCRIPT_NAME}?action={$key_up}">{$key_up}</a>

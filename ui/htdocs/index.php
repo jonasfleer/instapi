@@ -1,11 +1,13 @@
 <?php
+error_reporting(E_ALL | E_STRICT);
 
 // define our application directory
-define('INSTAPI_DIR', '/Users/jfleer/playprojects/instapi/ui/smarty/');
+define('INSTAPI_DIR', '/home/pi/instapi/ui/smarty/');
 // define smarty lib directory
-define('SMARTY_DIR', '/Applications/MAMP/bin/php/php5.3.6/lib/php/Smarty/');
+// define('SMARTY_DIR', '/Applications/MAMP/bin/php/php5.3.6/lib/php/Smarty/');
 // define picture storage path
-define('PIC_DIR', '/Users/jfleer/playprojects/instapi_pics');
+define('PIC_DIR', '/home/pi/instapi_pics');
+define('APP_TEMP_DIR', '/tmp/instapi_www_temp');
 // include the funcs script
 include(INSTAPI_DIR . 'libs/funcs.lib.php');
 // include the setup script
