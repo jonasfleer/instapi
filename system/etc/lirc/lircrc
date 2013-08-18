@@ -1,0 +1,51 @@
+# begin
+# 	prog	= ...
+# 	remote	= ...
+# 	button	= ...
+# 	[button	= ...] (optional, for key sequences)
+# 	repeat	= ...
+# 	delay	= ...
+# 	config	= ...
+# 	[config	= ...] (optional, for toggle button behaviour)
+# 	mode	= ...
+# 	flags	= ...
+# end
+
+# KEY_UP          
+# KEY_DOWN        
+# KEY_BACK        
+# KEY_FORWARD     
+# KEY_PLAYPAUSE   
+# KEY_EXIT        
+# KEY_PREVIOUS    
+# KEY_NEXT        
+# KEY_VOLUMEDOWN  
+# KEY_VOLUMEUP    
+# KEY_EQUAL       
+# KEY_CHANNEL     
+# KEY_CHANNELDOWN 
+# KEY_CHANNELUP   
+
+
+# Reboot
+begin
+	remote = blackwhite
+	button = KEY_CHANNEL
+	button = KEY_CHANNELUP
+	prog   = irexec
+	repeat = 0
+	config = shutdown -r now
+end
+
+# Shutdown
+begin
+	remote = blackwhite
+	button = KEY_CHANNEL
+	button = KEY_CHANNELDOWN
+	prog   = irexec
+	repeat = 0
+	config = shutdown -h now
+end
+
+
+

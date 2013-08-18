@@ -64,5 +64,9 @@ sudo usermod -a -G www-data pi
 #2 cd mjpg-streamer/mjpg-streamer
 #2 make USE_LIBV4L2=true clean all
 #2 make DESTDIR=/usr install
+echo "lirc_rpi gpio_in_pin=18" | sudo tee -a /etc/modules
+sudo apt-get install lirc
+sudo rm -fr /etc/lirc
+sudo ln -s /home/pi/instapi/system/etc/lirc /etc/lirc
 
 mkdir /tmp/stream

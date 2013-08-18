@@ -1,4 +1,4 @@
-mode = 800x600
+mode = 320x240
 pixelformat = ARGB
 layer-buffer-mode = backvideo
 always-indirect
