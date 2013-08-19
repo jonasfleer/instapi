@@ -27,6 +27,22 @@
 # KEY_CHANNELUP   
 
 
+# Keyboard: Select/PlayPause
+begin
+	remote = blackwhite
+	button = KEY_PLAYPAUSE
+	prog   = irxevent
+	config = Key ALT-s CurrentWindow
+end
+
+#begin
+#	remote = blackwhite
+#	button = KEY_PLAYPAUSE
+#	prog   = irexec
+#	repeat = 0
+#	config = DISPLAY=:0 xte 'keydown Alt_L' 'keydown s' 'keyup Alt_L' 'keyup s'
+#end
+
 # Reboot
 begin
 	remote = blackwhite

@@ -68,5 +68,9 @@ echo "lirc_rpi gpio_in_pin=18" | sudo tee -a /etc/modules
 sudo apt-get install lirc
 sudo rm -fr /etc/lirc
 sudo ln -s /home/pi/instapi/system/etc/lirc /etc/lirc
+sudo rm /etc/init.d/lirc
+sudo ln -s /home/pi/instapi/system/etc/init.d/lirc /etc/init.d/lirc
+sudo apt-get install lirc-x
+#sudo apt-get install xautomation
 
 mkdir /tmp/stream

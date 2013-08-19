@@ -66,8 +66,8 @@ $savedir = '/tmp/instapi_www_temp';
 if (!is_dir($savedir)) {
     mkdir($savedir);
 }
-$width = empty($_GET['w']) ? '640' : $_GET['w'];
-$height = empty($_GET['h']) ? '480' : $_GET['h'];
+$width = empty($_GET['w']) ? '320' : $_GET['w'];
+$height = empty($_GET['h']) ? '240' : $_GET['h'];
 $quality = empty($_GET['q']) ? '10' : $_GET['q'];
 $showImage = !empty($_GET['show']);
 
@@ -78,15 +78,19 @@ if ($showImage) {
 }
 
 $exec_out = array();
-$out = exec('raspistill -t 0 -e jpg -w '.$width.' -h '.$height.' -q '.$quality.' -o ' . $path, $exec_out);
+$cmd = 'raspistill -t 0 -e jpg -n -w '.$width.' -h '.$height.' -q '.$quality.' -o ' . $path;
+//syslog(LOG_INFO, 'instapi exec: ' . $cmd);
+$out = exec($cmd, $exec_out);
 // print_r($out . ': ' . implode(' ', $exec_out));
-chmod($path, 0666);
+// chmod($path, 0666);
 
 if ($showImage) {
     $im = file_get_contents($path); 
     header('Content-Type: image/jpeg'); 
     echo $im;
 }
+
+unlink($path);
 
 
 
