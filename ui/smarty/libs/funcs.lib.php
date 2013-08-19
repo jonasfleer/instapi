@@ -1,7 +1,7 @@
 <?php
 
 function genSessionId() {
-    $val = date("Ymd_His") . "_" . sprintf( '%04x%04x', mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ) );
+    return date("Ymd-His") . "-" . sprintf( '%04x%04x', mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ) );
 }
 
 /*

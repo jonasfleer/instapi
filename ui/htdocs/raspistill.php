@@ -62,35 +62,58 @@ error_reporting(E_ALL | E_STRICT);
 // raspistill -o /tmp/myimage_%04d.jpg -w 640 -h 480 -tl 1000 -t 720000
 // raspistill -tl 50 -w 640 -h 480 -o /tmp/timelapse_%04d.jpg -q 100 -t 30000
 // 
+define('PIC_DIR', '/home/pi/instapi_pics');
+
+$debug = false;
 $savedir = '/tmp/instapi_www_temp';
+$lockfilename = '/run/lock/raspistill.lock';
+
 if (!is_dir($savedir)) {
     mkdir($savedir);
 }
 $width = empty($_GET['w']) ? '320' : $_GET['w'];
 $height = empty($_GET['h']) ? '240' : $_GET['h'];
 $quality = empty($_GET['q']) ? '10' : $_GET['q'];
-$showImage = !empty($_GET['show']);
+$mode = empty($_GET['mode']) ? 'show' : $_GET['mode'];
 
-if ($showImage) {
+if ($mode=='show') {
     $path = $savedir . '/' . uniqid() . '.jpg';
+} else if (!empty($_GET['id'])) {
+    // Do not return image, but save it
+    $path = PIC_DIR . '/' . $_GET['id'] . '.jpg';
 } else {
-    $path = $savedir . '/preview.jpg';
+    error_log("No image ID given");
 }
 
 $exec_out = array();
 $cmd = 'raspistill -t 0 -e jpg -n -w '.$width.' -h '.$height.' -q '.$quality.' -o ' . $path;
-//syslog(LOG_INFO, 'instapi exec: ' . $cmd);
-$out = exec($cmd, $exec_out);
-// print_r($out . ': ' . implode(' ', $exec_out));
-// chmod($path, 0666);
+if ($debug) { syslog(LOG_INFO, 'instapi exec: ' . $cmd . ' Acquiring lock ...'); }
 
-if ($showImage) {
-    $im = file_get_contents($path); 
-    header('Content-Type: image/jpeg'); 
-    echo $im;
+$lockfile = fopen( $lockfilename,"w");
+if (flock($lockfile, LOCK_EX)) {
+    $out = exec($cmd, $exec_out);
+
+    if ($debug) { 
+        // print_r($out . ': ' . implode(' ', $exec_out));
+        chmod($path, 0666); 
+    }
+
+    flock($lockfile, LOCK_UN); // unlock the file
+    fclose($lockfile);
+    
+    if ($mode=='show') {
+        $im = file_get_contents($path); 
+        header('Content-Type: image/jpeg'); 
+        echo $im;
+    }
+    if (!$mode=='save') { unlink($path); }
+
+} else {
+    // flock() returned false, no lock obtained
+    fclose($flockfile);
+    error_log("Could not lock $lockfilename!");
 }
 
-unlink($path);
 
 
 

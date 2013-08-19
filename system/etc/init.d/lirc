@@ -124,9 +124,9 @@ case "$1" in
 			log_daemon_msg "Starting execution daemon: irexec"
 			start-stop-daemon --start --quiet --oknodo --exec /usr/bin/irexec -- -d /etc/lirc/lircrc < /dev/null
 			log_end_msg $?
-			log_daemon_msg "Starting execution daemon: irxevent"
-			start-stop-daemon --start --quiet --oknodo --chuid=$IRXEVENT_USER_ID --exec /usr/bin/env DISPLAY=:0 /usr/bin/irxevent -- -d /etc/lirc/lircrc < /dev/null
-			log_end_msg $?
+			#log_daemon_msg "Starting execution daemon: irxevent"
+			#start-stop-daemon --start --quiet --oknodo --chuid=$IRXEVENT_USER_ID --exec /usr/bin/env DISPLAY=:0 /usr/bin/irxevent -- -d /etc/lirc/lircrc < /dev/null
+			#log_end_msg $?
 		fi
 		;;
 	stop)
@@ -134,9 +134,9 @@ case "$1" in
 			log_daemon_msg "Stopping execution daemon: irexec"
 			start-stop-daemon --stop --quiet --exec /usr/bin/irexec
 			log_end_msg $?
-			log_daemon_msg "Stopping execution daemon: irxevent"
-			start-stop-daemon --stop --quiet --chuid=$IRXEVENT_USER_ID --exec /usr/bin/irxevent
-			log_end_msg $?
+			#log_daemon_msg "Stopping execution daemon: irxevent"
+			#start-stop-daemon --stop --quiet --chuid=$IRXEVENT_USER_ID --exec /usr/bin/irxevent
+			#log_end_msg $?
 		fi
 
 		if [ "$START_LIRCMD" = "true" ]; then
@@ -154,7 +154,7 @@ case "$1" in
 	reload|force-reload)
 		if [ "$START_IREXEC" = "true" ]; then
 			start-stop-daemon --stop --quiet --signal 1 --exec /usr/bin/irexec
-			start-stop-daemon --stop --quiet --chuid=$IRXEVENT_USER_ID --signal 1 --exec /usr/bin/irxevent
+			#start-stop-daemon --stop --quiet --chuid=$IRXEVENT_USER_ID --signal 1 --exec /usr/bin/irxevent
 		fi
 
 		if [ "$START_LIRCD" = "true" ]; then

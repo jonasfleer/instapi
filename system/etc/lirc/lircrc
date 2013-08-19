@@ -26,6 +26,7 @@
 # KEY_CHANNELDOWN 
 # KEY_CHANNELUP   
 
+################### APPLE REMOTE ############################################
 
 # Keyboard: Select/PlayPause
 begin
@@ -35,13 +36,117 @@ begin
 	config = Key ALT-s CurrentWindow
 end
 
-#begin
-#	remote = blackwhite
-#	button = KEY_PLAYPAUSE
-#	prog   = irexec
-#	repeat = 0
-#	config = DISPLAY=:0 xte 'keydown Alt_L' 'keydown s' 'keyup Alt_L' 'keyup s'
-#end
+# Fake entry to start irxevent if not yet there.
+begin
+	remote = blackwhite
+	button = KEY_PLAYPAUSE
+	prog   = irexec
+	config = /usr/local/bin/start-irxevent-daemon
+end
+
+# Keyboard: Up
+begin
+	remote = blackwhite
+	button = KEY_UP
+	prog   = irxevent
+	config = Key ALT-w CurrentWindow
+end
+
+# Keyboard: Left
+begin
+	remote = blackwhite
+	button = KEY_BACK
+	prog   = irxevent
+	config = Key ALT-a CurrentWindow
+end
+
+# Keyboard: Right
+begin
+	remote = blackwhite
+	button = KEY_FORWARD
+	prog   = irxevent
+	config = Key ALT-d CurrentWindow
+end
+
+# Keyboard: Down
+begin
+	remote = blackwhite
+	button = KEY_DOWN
+	prog   = irxevent
+	config = Key ALT-x CurrentWindow
+end
+
+# Keyboard: Menu
+begin
+	remote = blackwhite
+	button = KEY_EXIT
+	prog   = irxevent
+	config = Key ALT-q CurrentWindow
+end
+
+
+#################### BLACK RC - REGULAR COMMANDS ######################
+
+# Keyboard: Select/PlayPause
+begin
+	remote = blackwhite
+	button = KEY_EQUAL
+	prog   = irxevent
+	config = Key ALT-s CurrentWindow
+end
+
+# Keyboard: Up
+begin
+	remote = blackwhite
+	button = KEY_VOLUMEUP
+	prog   = irxevent
+	config = Key ALT-w CurrentWindow
+end
+
+# Keyboard: Left
+begin
+	remote = blackwhite
+	button = KEY_PREVIOUS
+	prog   = irxevent
+	config = Key ALT-a CurrentWindow
+end
+
+# Keyboard: Right
+begin
+	remote = blackwhite
+	button = KEY_NEXT
+	prog   = irxevent
+	config = Key ALT-d CurrentWindow
+end
+
+# Keyboard: Down
+begin
+	remote = blackwhite
+	button = KEY_VOLUMEDOWN
+	prog   = irxevent
+	config = Key ALT-x CurrentWindow
+end
+
+# Keyboard: Menu
+begin
+	remote = blackwhite
+	button = KEY_CHANNEL
+	prog   = irxevent
+	config = Key ALT-q CurrentWindow
+end
+
+
+#################### BLACK RC - EXTRA COMMANDS ######################
+
+# Reset browser to Homepage
+begin
+	remote = blackwhite
+	button = KEY_CHANNEL
+	button = KEY_EQUAL
+	prog   = irxevent
+	config = Key CTRL-h CurrentWindow
+end
+
 
 # Reboot
 begin

@@ -6,7 +6,6 @@ define('INSTAPI_DIR', '/home/pi/instapi/ui/smarty/');
 // define smarty lib directory
 // define('SMARTY_DIR', '/Applications/MAMP/bin/php/php5.3.6/lib/php/Smarty/');
 // define picture storage path
-define('PIC_DIR', '/home/pi/instapi_pics');
 define('APP_TEMP_DIR', '/tmp/instapi_www_temp');
 // include the funcs script
 include(INSTAPI_DIR . 'libs/funcs.lib.php');
@@ -15,8 +14,8 @@ include(INSTAPI_DIR . 'libs/picsession_setup.php');
 
 // set the current action
 $_action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'Menu';
-$picSessionId = isset($_REQUEST['picsession_id']) ? $_REQUEST['picsession_id'] : genSessionId();
-
+$picSessionId = isset($_GET['pic_session_id']) ? $_GET['pic_session_id'] : genSessionId();
+// syslog(LOG_INFO, "picsession id " . $picSessionId . " running.");
 // create PicSession object
 $picSession = new PicSession($picSessionId);
 
