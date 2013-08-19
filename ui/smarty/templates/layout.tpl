@@ -17,7 +17,7 @@
 	<body lang="en">
 		<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
 		<div style="display:none">
-			<a accesskey="s" href="{$SCRIPT_NAME}?action={$key_select}">{$key_select}</a>
+			<a accesskey="e" href="{$SCRIPT_NAME}?action={$key_select}">{$key_select}</a>
 			<a accesskey="w" href="{$SCRIPT_NAME}?action={$key_up}">{$key_up}</a>
 			<a accesskey="a" href="{$SCRIPT_NAME}?action={$key_left}">{$key_left}</a>
 			<a accesskey="d" href="{$SCRIPT_NAME}?action={$key_right}">{$key_right}</a>

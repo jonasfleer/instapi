@@ -1,6 +1,6 @@
 body {
     overflow: hidden;
-    background: red;
+    background: url(../img/ruler_background.gif) no-repeat;
     margin: 0px;
     padding: 0px;
     height: 240px;
@@ -8,7 +8,6 @@ body {
 }
 
 #content {
-    background: url(../img/ruler_background.gif);
     width: 320px;
     height: 240px;
     margin: 0px;
