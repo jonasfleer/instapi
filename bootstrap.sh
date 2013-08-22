@@ -77,3 +77,9 @@ sudo ln -s /home/pi/instapi/system/usr/local/bin/start-irxevent-daemon /usr/loca
 ln -s /home/pi/instapi/system/home/pi/.xsession /home/pi/.xsession
 mkdir /home/pi/instapi_pics
 chmod ugo+rwx /home/pi/instapi_pics
+
+sudo apt-get install printer-driver-gutenprint
+sudo apt-get install python-cups
+sudo usermod -aG lpadmin pi
+sudo /etc/init.d/cups start
+sudo /etc/init.d/avahi-daemon

@@ -62,22 +62,18 @@ error_reporting(E_ALL | E_STRICT);
 // raspistill -o /tmp/myimage_%04d.jpg -w 640 -h 480 -tl 1000 -t 720000
 // raspistill -tl 50 -w 640 -h 480 -o /tmp/timelapse_%04d.jpg -q 100 -t 30000
 // 
-define('PIC_DIR', '/home/pi/instapi_pics');
+require_once('globals.php');
 
 $debug = false;
-$savedir = '/tmp/instapi_www_temp';
 $lockfilename = '/run/lock/raspistill.lock';
 
-if (!is_dir($savedir)) {
-    mkdir($savedir);
-}
 $width = empty($_GET['w']) ? '320' : $_GET['w'];
 $height = empty($_GET['h']) ? '240' : $_GET['h'];
 $quality = empty($_GET['q']) ? '10' : $_GET['q'];
 $mode = empty($_GET['mode']) ? 'show' : $_GET['mode'];
 
 if ($mode=='show') {
-    $path = $savedir . '/' . uniqid() . '.jpg';
+    $path = TEMP_DIR . '/' . uniqid() . '.jpg';
 } else if (!empty($_GET['id'])) {
     // Do not return image, but save it
     $path = PIC_DIR . '/' . $_GET['id'] . '.jpg';

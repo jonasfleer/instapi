@@ -45,11 +45,10 @@ $('#preview').load(function() {
 			updateTimerView(pic_count, time_count);
 			if (time_count <= 0) {
 				// time counter ended, do something here
-				takeBigPic('{$pic_session_id}', pic_count);
+				{/literal}
+			      takeBigPic('{$pic_session_id}', pic_count);
+				{literal}
 				$('#flash').fadeIn(500, function () {
-					{/literal}
-				      takeBigPic('{$pic_session_id}', pic_count);
-					{literal}
 				      $('#flash').fadeOut(500);
 				});
 				time_count=8;
