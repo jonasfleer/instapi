@@ -18,12 +18,13 @@ class PicSession {
         $this->id = $picSessionId;
         // instantiate the template object
         $this->tpl = new PicSession_Smarty;
+        $this->tpl->assign('pic_session_id', $this->id);
         $this->tpl->assign('key_select', '');
         $this->tpl->assign('key_up', '');
         $this->tpl->assign('key_down', '');
         $this->tpl->assign('key_left', '');
         $this->tpl->assign('key_right', '');
-        $this->tpl->assign('key_menu', '');
+        $this->tpl->assign('key_menu', 'Menu');
     }
     
     function displayMenu() {

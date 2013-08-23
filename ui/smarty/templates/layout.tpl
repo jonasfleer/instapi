@@ -17,16 +17,21 @@
 	<body lang="en">
 		<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
 		<div style="display:none">
-			<a accesskey="e" href="{$SCRIPT_NAME}?action={$key_select}">{$key_select}</a>
-			<a accesskey="w" href="{$SCRIPT_NAME}?action={$key_up}">{$key_up}</a>
-			<a accesskey="a" href="{$SCRIPT_NAME}?action={$key_left}">{$key_left}</a>
-			<a accesskey="d" href="{$SCRIPT_NAME}?action={$key_right}">{$key_right}</a>
-			<a accesskey="x" href="{$SCRIPT_NAME}?action={$key_down}">{$key_down}</a>
-			<a accesskey="q" href="{$SCRIPT_NAME}?action={$key_menu}">{$key_menu}</a>
+				{if $key_select}<a accesskey="s" href="{$SCRIPT_NAME}?action={$key_select}&pic_session_id={$pic_session_id}">{$key_select}</a>{/if}
+				{if $key_up}<a accesskey="w" href="{$SCRIPT_NAME}?action={$key_up}&pic_session_id={$pic_session_id}">{$key_up}</a>{/if}
+				{if $key_left}<a accesskey="a" href="{$SCRIPT_NAME}?action={$key_left}&pic_session_id={$pic_session_id}">{$key_left}</a>{/if}
+				{if $key_right}<a accesskey="d" href="{$SCRIPT_NAME}?action={$key_right}&pic_session_id={$pic_session_id}">{$key_right}</a>{/if}
+				{if $key_down}<a accesskey="x" href="{$SCRIPT_NAME}?action={$key_down}&pic_session_id={$pic_session_id}">{$key_down}</a>{/if}
+				{if $key_menu}<a accesskey="q" href="{$SCRIPT_NAME}?action={$key_menu}">{$key_menu}</a>{/if}
 		</div>
-		
+		<style type="text/css">
+		</style>
 		<div id="content">
-		{block name=body}{/block}
+			{block name=body}{/block}
+			<div id="layer1" class="layer">{block name=layer1}{/block}</div>
+			<div id="layer2" class="layer">{block name=layer2}{/block}</div>
+			<div id="layer3" class="layer">{block name=layer3}{/block}</div>
+			<div id="layer4" class="layer">{block name=layer4}{/block}</div>
 		</div>
 
 	</body>

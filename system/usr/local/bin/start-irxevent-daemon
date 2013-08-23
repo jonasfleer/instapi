@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ -z "$(pidof irxevent)" ]
+then
+	echo "Starting irxevent ..."
+	start-stop-daemon --start --quiet --oknodo --chuid=1000 --exec /usr/bin/env DISPLAY=:0 /usr/bin/irxevent -- -d /etc/lirc/lircrc < /dev/null
+else
+	echo "irxevent already running"
+fi

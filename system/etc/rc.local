@@ -17,6 +17,7 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
+chmod a+rw /dev/vchiq
 su -l pi -c startx
 
 exit 0

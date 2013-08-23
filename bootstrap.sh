@@ -68,5 +68,18 @@ echo "lirc_rpi gpio_in_pin=18" | sudo tee -a /etc/modules
 sudo apt-get install lirc
 sudo rm -fr /etc/lirc
 sudo ln -s /home/pi/instapi/system/etc/lirc /etc/lirc
+sudo rm /etc/init.d/lirc
+sudo ln -s /home/pi/instapi/system/etc/init.d/lirc /etc/init.d/lirc
+sudo apt-get install lirc-x
+ln -s /home/pi/instapi/system/home/pi/.xinitrc /home/pi/.xinitrc
+ln -s /home/pi/instapi/system/home/pi/.xsession /home/pi/.xsession
+sudo ln -s /home/pi/instapi/system/usr/local/bin/start-irxevent-daemon /usr/local/bin/start-irxevent-daemon
+ln -s /home/pi/instapi/system/home/pi/.xsession /home/pi/.xsession
+mkdir /home/pi/instapi_pics
+chmod ugo+rwx /home/pi/instapi_pics
 
-mkdir /tmp/stream
+sudo apt-get install printer-driver-gutenprint
+sudo apt-get install python-cups
+sudo usermod -aG lpadmin pi
+sudo /etc/init.d/cups start
+sudo /etc/init.d/avahi-daemon
