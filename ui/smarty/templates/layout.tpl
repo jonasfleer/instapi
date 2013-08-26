@@ -32,6 +32,8 @@
 			<div id="layer2" class="layer">{block name=layer2}{/block}</div>
 			<div id="layer3" class="layer">{block name=layer3}{/block}</div>
 			<div id="layer4" class="layer">{block name=layer4}{/block}</div>
+			<div id="debug_layer" class="layer"><span id="debug" style="padding-top: 50px; color:white; {if $debugme}display:none{/if}"></span></div>
+			
 		</div>
 
 	</body>

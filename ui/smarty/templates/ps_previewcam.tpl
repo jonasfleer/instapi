@@ -79,6 +79,3 @@ $('#preview').load(function() {
 {block name=layer3}
 <div id="flash">&nbsp;</div>
 {/block}
-{block name=layer4}
-<span id="debug" style="padding-top: 50px; color:white;"></span>
-{/block}

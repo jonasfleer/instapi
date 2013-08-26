@@ -1,5 +1,6 @@
 <?php
 
+require_once("globals.php");
 
 class PicSession {
 
@@ -25,6 +26,7 @@ class PicSession {
         $this->tpl->assign('key_left', '');
         $this->tpl->assign('key_right', '');
         $this->tpl->assign('key_menu', 'Menu');
+        $this->tpl->assign('debugme', DEBUGME);
     }
     
     function displayMenu() {
