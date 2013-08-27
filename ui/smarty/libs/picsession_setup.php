@@ -1,7 +1,7 @@
 <?php
 
 require(INSTAPI_DIR . 'libs/picsession.lib.php');
-require('Smarty/Smarty.class.php');
+require('smarty3/Smarty.class.php');
 
 // smarty configuration
 class PicSession_Smarty extends Smarty {
