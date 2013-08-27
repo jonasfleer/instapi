@@ -25,11 +25,20 @@ $('#preview').load(function() {
 		$('#debug').text('time_count='+time_count + ' pic_count='+pic_count);
 
 		var counter=setInterval(mytimer, 1000); //1000 will run it every 1 second
+		
+		function triggerThumbCreation(pic_session_id, pic_num) {
+			$.ajax({
+			{/literal}
+			  url: 'http://{$smarty.server.SERVER_NAME}/img_process_async.php?id={$pic_session_id}' + '_' + pic_num + '&mode=thumb'
+			{literal}
+			});
+		}
 
 		function takeBigPic(pic_session_id, pic_num) {
 			$.ajax({
 			{/literal}
-			  url: 'http://{$smarty.server.SERVER_NAME}/raspistill.php?w=1920&h=1080&q=100&mode=save&id={$pic_session_id}' + '_' + pic_num
+			  url: 'http://{$smarty.server.SERVER_NAME}/raspistill.php?w=1920&h=1080&q=100&mode=save&id={$pic_session_id}' + '_' + pic_num,
+			  success: triggerThumbCreation(pic_session_id, pic_num)
 			{literal}
 			});
 		}

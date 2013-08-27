@@ -1,6 +1,6 @@
 <?php
 
-define('SMARTY_DIR', '/Applications/MAMP/bin/php/php5.3.6/lib/php/Smarty/');
+define('SMARTY_DIR', '/usr/share/php/smarty3/');
 define('INSTAPI_DIR', '/home/pi/instapi/ui/smarty/');
 define('PIC_DIR', '/home/pi/instapi_pics');
 define('TEMP_DIR', '/tmp/instapi_www_temp');

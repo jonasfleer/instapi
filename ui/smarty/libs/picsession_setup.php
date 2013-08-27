@@ -16,6 +16,16 @@ class PicSession_Smarty extends Smarty {
             error_log("can't create temp path at: " . TEMP_DIR); 
           }
       }
+      if (!is_dir(THUMB_DIR)) {
+          if(!mkdir(THUMB_DIR)) { 
+            error_log("can't create temp path at: " . THUMB_DIR); 
+          }
+      }
+      if (!is_dir(PRINT_MASTER_DIR)) {
+          if(!mkdir(PRINT_MASTER_DIR)) { 
+            error_log("can't create temp path at: " . PRINT_MASTER_DIR); 
+          }
+      }
     }
 }
       

@@ -2,7 +2,7 @@
 error_reporting(E_ALL | E_STRICT);
 
 require_once('globals.php');
-require_once('smarty/funcs.lib.php');
+require_once(INSTAPI_DIR . 'libs/funcs.lib.php');
 
 // possible modes:
 //  * thumb, print_master
@@ -22,10 +22,10 @@ if ($mode == 'thumb') {
     $cmd = 'convert '.$pic_path.' -thumbnail '.$geometry.' '.$thumb_path;
 } else if ($mode == 'print_master') {
     $cmd = 'convert -size '.(ORIG_WIDTH*2).'x'.(ORIG_HEIGHT*2).' xc:white \
-      \( $pic_id . '_0.jpg' -resize '.ORIG_WIDTH.'\> \) -geometry +0+0 -composite \
-      \( $pic_id . '_1.jpg' -resize '.ORIG_WIDTH.'\> \) -geometry +'.ORIG_WIDTH.'+0 -composite \
-      \( $pic_id . '_2.jpg' -resize '.ORIG_WIDTH.'\> \) -geometry +0+'ORIG_HEIGHT' -composite \
-      \( $pic_id . '_3.jpg' -resize '.ORIG_WIDTH.'\> \) -geometry +'.ORIG_WIDTH.'+'.ORIG_HEIGHT.' \
+      \\( ' . $pic_id . '_0.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +0+0 -composite \
+      \\( ' . $pic_id . '_1.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +'.ORIG_WIDTH.'+0 -composite \
+      \\( ' . $pic_id . '_2.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +0+'.ORIG_HEIGHT.' -composite \
+      \\( ' . $pic_id . '_3.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +'.ORIG_WIDTH.'+'.ORIG_HEIGHT.' \
       -composite '. PRINT_MASTER_DIR . '/' . $pic_id . '.jpg';
 } else {
     die('Invalid mode given '.$mode);
