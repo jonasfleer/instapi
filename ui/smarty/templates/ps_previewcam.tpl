@@ -15,7 +15,8 @@ $('#preview').load(function() {
 
 {block name=layer2}
 
-	<div id="countdown"></div>
+	<div id="countdown_foto"></div>
+	<div id="countdown_time"></div>
 
 	<script type="text/javascript">
 	{literal}
@@ -35,7 +36,7 @@ $('#preview').load(function() {
 		
 		function displayAllPicsOptions() {
 			{/literal}
-				window.location = '{$SCRIPT_NAME}?action=AllPicsOptions&pic_session_id={$pic_session_id}';
+				window.location = '{$smarty.server.SCRIPT_NAME}?action=AllPicsOptions&pic_session_id={$pic_session_id}';
 			{literal}
 		}
 
@@ -64,11 +65,16 @@ $('#preview').load(function() {
 			$('#debug').text('time_count='+_time_count + ' pic_count='+_pic_count);
 			
 			if (_time_count<=0 && _pic_count<=0) {
-				$("#countdown").text("Printing ...");
+				$("#countdown_foto").text("Printing ...");
+				$("#countdown_time").text("");
 			} else if (pic_count<=0) {
-				$("#countdown").text("Smile!");
+				$("#countdown_foto").text("Smile!");
+				$("#countdown_time").text("");
 			} else {
-				$("#countdown").text(_pic_count + ':' + _time_count);
+				$("#countdown_foto").text("Foto " + (5 - _pic_count));
+				$("#countdown_time").text(_time_count);
+				$("#countdown_time").hide();
+				$("#countdown_time").fadeIn(250);
 			}
 		}
 	{/literal}

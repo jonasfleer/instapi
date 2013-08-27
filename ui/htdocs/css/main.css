@@ -20,7 +20,6 @@ body, #content, .layer, #flash, table.menu {
 	position:absolute;
 	top: 0;
 	left: 0;
-	border: 1px solid black;
 }
 #content{ z-index: 1;  }
 #layer1 { z-index: 10; }
@@ -32,8 +31,19 @@ body, #content, .layer, #flash, table.menu {
     background-color: white;
     display: none;
 }
-#countdown {
-    color: red;
+#countdown_foto {
+    color: black;
+    font-size: 60px;
+    position: absolute;
+    top: 20px;
+    left: 65px;
+}
+#countdown_time {
+    color: black;
+    font-size: 120px;
+    position: absolute;
+    top: 80px;
+    left: 125px;
 }
 table.menu {
 	border: 1px solid black;
@@ -58,6 +68,11 @@ td.menu {
 #overlay_all_pics_options {
 	margin: 150px 50px 10px 50px;
 	height: 60px;
+}
+
+#overlay_print {
+	margin: 150px 40px 10px 80px;
+	height: 30px;
 }
 
 td.pic_options_menu_icon {

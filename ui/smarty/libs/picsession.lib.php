@@ -26,7 +26,6 @@ class PicSession {
         $this->tpl->assign('key_left', '');
         $this->tpl->assign('key_right', '');
         $this->tpl->assign('key_menu', 'Menu');
-        $this->tpl->assign('debugme', DEBUGME);
     }
     
     function displayMenu() {
@@ -35,37 +34,22 @@ class PicSession {
         $this->tpl->display('ps_menu.tpl');
     }
 
+    function displayPrint() {
+        $this->tpl->assign('error', $this->error);
+        $this->tpl->display('ps_print.tpl');
+    }
 
     function displayPreviewCam() {
         $this->tpl->assign('error', $this->error);
         $this->tpl->display('ps_previewcam.tpl');
     }
 
-    function displayCountdown($picIndex) {
-        $this->tpl->assign('error', $this->error);
-        $this->tpl->display('ps_countdown.tpl');
-    }
-
-    function displayPicAndProceed($showPicIndex, $showPicIndex) {
-        $this->tpl->assign('error', $this->error);
-        $this->tpl->display('ps_pic_and_proceed.tpl');
-    }
-
-    function displayAllPics() {
-        $this->tpl->assign('error', $this->error);
-        $this->tpl->display('ps_all_pics.tpl');
-    }
-
     function displayAllPicsOptions() {
+        $this->tpl->assign('key_select', 'Print');
+        $this->tpl->assign('key_right', 'Menu');
         $this->tpl->assign('error', $this->error);
         $this->tpl->display('ps_all_pics_options.tpl');
     }
-
-    function displayThankYouAndByeBye() {
-        $this->tpl->assign('error', $this->error);
-        $this->tpl->display('ps_thank_you_and_bye_bye.tpl');
-    }
-
 
 }
 

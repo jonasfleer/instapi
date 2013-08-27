@@ -64,7 +64,6 @@ error_reporting(E_ALL | E_STRICT);
 // 
 require_once('globals.php');
 
-$debug = false;
 $lockfilename = '/run/lock/raspistill.lock';
 
 $width = empty($_GET['w']) ? '320' : $_GET['w'];
@@ -83,13 +82,13 @@ if ($mode=='show') {
 
 $exec_out = array();
 $cmd = 'raspistill -t 0 -e jpg -n -w '.$width.' -h '.$height.' -q '.$quality.' -o ' . $path;
-if ($debug) { syslog(LOG_INFO, 'instapi exec: ' . $cmd . ' Acquiring lock ...'); }
+if (DEBUGME) { syslog(LOG_INFO, 'instapi exec: ' . $cmd . ' Acquiring lock ...'); }
 
 $lockfile = fopen( $lockfilename,"w");
 if (flock($lockfile, LOCK_EX)) {
     $out = exec($cmd, $exec_out);
 
-    if ($debug) { 
+    if (DEBUGME) { 
         // print_r($out . ': ' . implode(' ', $exec_out));
         chmod($path, 0666); 
     }
