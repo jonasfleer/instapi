@@ -63,19 +63,20 @@ error_reporting(E_ALL | E_STRICT);
 // raspistill -tl 50 -w 640 -h 480 -o /tmp/timelapse_%04d.jpg -q 100 -t 30000
 // 
 require_once('globals.php');
-
-$lockfilename = '/run/lock/raspistill.lock';
+require_once(INSTAPI_DIR . 'libs/funcs.lib.php');
 
 $width = empty($_GET['w']) ? '320' : $_GET['w'];
 $height = empty($_GET['h']) ? '240' : $_GET['h'];
 $quality = empty($_GET['q']) ? '10' : $_GET['q'];
 $mode = empty($_GET['mode']) ? 'show' : $_GET['mode'];
+$pic_id = empty($_GET['id']) ? uniqid() : $_GET['id'];
+$create_thumb = empty($_GET['create_thumb']) ? false : ($_GET['create_thumb']=='true');
 
 if ($mode=='show') {
-    $path = TEMP_DIR . '/' . uniqid() . '.jpg';
+    $path = TEMP_DIR . '/' . $pic_id . '.jpg';
 } else if (!empty($_GET['id'])) {
     // Do not return image, but save it
-    $path = PIC_DIR . '/' . $_GET['id'] . '.jpg';
+    $path = PIC_DIR . '/' . $pic_id . '.jpg';
 } else {
     error_log("No image ID given");
 }
@@ -84,32 +85,46 @@ $exec_out = array();
 $cmd = 'raspistill -t 0 -e jpg -n -w '.$width.' -h '.$height.' -q '.$quality.' -o ' . $path;
 if (DEBUGME) { syslog(LOG_INFO, 'instapi exec: ' . $cmd . ' Acquiring lock ...'); }
 
-$lockfile = fopen( $lockfilename,"w");
-if (flock($lockfile, LOCK_EX)) {
-    $out = exec($cmd, $exec_out);
+$raspistill_lockfile = fopen( RASPISTILL_LOCKFILEPATH,"w");
+$pic_lockfile = fopen( LOCKFILE_DIR . '/' . $pic_id . '.lock', "w");
 
-    if (DEBUGME) { 
-        // print_r($out . ': ' . implode(' ', $exec_out));
-        chmod($path, 0666); 
-    }
+if (flock($raspistill_lockfile, LOCK_EX)) {
+    if (flock($pic_lockfile, LOCK_EX)) {
+        $out = exec($cmd, $exec_out);
 
-    flock($lockfile, LOCK_UN); // unlock the file
-    fclose($lockfile);
+        if (DEBUGME) { 
+            // print_r($out . ': ' . implode(' ', $exec_out));
+            chmod($path, 0666); 
+        }
+
+        flock($pic_lockfile, LOCK_UN);
+        fclose($pic_lockfile);
+        
+        flock($raspistill_lockfile, LOCK_UN); // unlock the file
+        fclose($raspistill_lockfile);
     
-    if ($mode=='show') {
-        $im = file_get_contents($path); 
-        header('Content-Type: image/jpeg'); 
-        echo $im;
+        if ($mode=='show') {
+            $im = file_get_contents($path); 
+            header('Content-Type: image/jpeg'); 
+            echo $im;
+        }
+        if (!$mode=='save') { unlink($path); }
     }
-    if (!$mode=='save') { unlink($path); }
-
 } else {
     // flock() returned false, no lock obtained
-    fclose($flockfile);
-    error_log("Could not lock $lockfilename!");
+    fclose($raspistill_flockfile);
+    error_log("Could not lock " . RASPISTILL_LOCKFILEPATH);
+}
+
+if ($create_thumb) {
+    $pic_path = PIC_DIR . '/' . $pic_id . '.jpg';
+    $thumb_path = THUMB_DIR . '/' . computeThumbfileName($pic_id, THUMB_WIDTH) . '.jpg';
+    $cmd = 'convert '.$pic_path.' -thumbnail '.THUMB_WIDTH.' '.$thumb_path;
+    $out = exec($cmd, $exec_out);
 }
 
 
+echo $path;
 
 
 ?>

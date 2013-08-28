@@ -37,8 +37,8 @@ $('#preview').load(function() {
 		function takeBigPic(pic_session_id, pic_num) {
 			$.ajax({
 			{/literal}
-			  url: 'http://{$smarty.server.SERVER_NAME}/raspistill.php?w=1920&h=1080&q=100&mode=save&id={$pic_session_id}' + '_' + pic_num,
-			  success: triggerThumbCreation(pic_session_id, pic_num)
+			  url: 'http://{$smarty.server.SERVER_NAME}/raspistill.php?w=1920&h=1080&q=100&mode=save&id={$pic_session_id}' + '_' + pic_num + '&create_thumb=true'
+			  /* success: triggerThumbCreation(pic_session_id, pic_num) */
 			{literal}
 			});
 		}

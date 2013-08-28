@@ -7,6 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>{block name=title}Instapi Photobooth{/block}</title>
+		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/main.css" />
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,6 +17,7 @@
 
 	<body lang="en">
 		<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+		<script type="text/javascript" src="js/jail.js"></script>
 		<div style="display:none">
 				{if $key_select}<a accesskey="s" href="{$SCRIPT_NAME}?action={$key_select}&pic_session_id={$pic_session_id}">{$key_select}</a>{/if}
 				{if $key_up}<a accesskey="w" href="{$SCRIPT_NAME}?action={$key_up}&pic_session_id={$pic_session_id}">{$key_up}</a>{/if}

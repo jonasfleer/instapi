@@ -10,16 +10,19 @@ include(INSTAPI_DIR . 'libs/picsession_setup.php');
 
 // set the current action
 $_action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'Menu';
-$picSessionId = isset($_GET['pic_session_id']) ? $_GET['pic_session_id'] : genSessionId();
-// syslog(LOG_INFO, "picsession id " . $picSessionId . " running.");
-// create PicSession object
-$picSession = new PicSession($picSessionId);
+$picSessionId = '';
 
 switch($_action) {
+    case 'Menu':
+        // Always generate a new session ID
+        $picSessionId = genSessionId();
+        break;
     default:
-        // viewing the screen
-        $picSession->{'display' . $_action}();
+        $picSessionId = isset($_GET['pic_session_id']) ? $_GET['pic_session_id'] : die('No session ID given');
         break;   
 }
+
+$picSession = new PicSession($picSessionId);
+$picSession->{'display' . $_action}();
 
 ?>

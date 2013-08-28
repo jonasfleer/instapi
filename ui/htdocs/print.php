@@ -1,21 +1,13 @@
-
 <?php
 error_reporting(E_ALL | E_STRICT);
 
 require_once('globals.php');
+require_once(INSTAPI_DIR . 'libs/funcs.lib.php');
 
-if (empty($_GET['id'])) {
-    die ('No image ID given.');
-}
-$pic_id = $_GET['id'];
-$pic_path = PRINT_MASTER_DIR . '/' . $pic_id . '.jpg';
+$pic_id = empty($_GET['id']) ? $_GET['pic_session_id'] : $_GET['id'];
 
-// -o landscape
+echo printPics($pic_id);
 
-$options = '-d cp900 -n 1 -s -t "'.$pic_id.'" -o media=Custom.15x10cm -o scaling=100 --';
-$cmd = 'lp '.$options.' '.$pic_path;
 
-if (DEBUGME) { syslog(LOG_INFO, 'instapi exec: ' . $cmd); }
-$out = exec($cmd, $exec_out);
 
 ?>

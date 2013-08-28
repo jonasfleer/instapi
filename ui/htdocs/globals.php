@@ -10,8 +10,10 @@ define('DEBUGME', true);
 define('SCREEN_WIDTH', 320);
 define('SCREEN_HEIGHT', 240);
 define('THUMB_WIDTH', 160);
-define('THUMB_HEIGHT', 284);
+define('THUMB_HEIGHT', 106);
 define('ORIG_HEIGHT', 1080);
-define('ORIG_WIDTH', 1920);
+define('ORIG_WIDTH', 1620);
+define('LOCKFILE_DIR', '/run/lock');
+define('RASPISTILL_LOCKFILEPATH', '/run/lock/raspistill.lock');
 
 ?>

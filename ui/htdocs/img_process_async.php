@@ -21,18 +21,20 @@ if ($mode == 'thumb') {
     $thumb_path = THUMB_DIR . '/' . computeThumbfileName($pic_id, $geometry) . '.jpg';
     $cmd = 'convert '.$pic_path.' -thumbnail '.$geometry.' '.$thumb_path;
 } else if ($mode == 'print_master') {
-    $cmd = 'convert -size '.(ORIG_WIDTH*2).'x'.(ORIG_HEIGHT*2).' xc:white \
-      \\( ' . $pic_id . '_0.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +0+0 -composite \
-      \\( ' . $pic_id . '_1.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +'.ORIG_WIDTH.'+0 -composite \
-      \\( ' . $pic_id . '_2.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +0+'.ORIG_HEIGHT.' -composite \
-      \\( ' . $pic_id . '_3.jpg -resize '.ORIG_WIDTH.'\\> \\) -geometry +'.ORIG_WIDTH.'+'.ORIG_HEIGHT.' \
-      -composite '. PRINT_MASTER_DIR . '/' . $pic_id . '.jpg';
+    // deprecated
 } else {
     die('Invalid mode given '.$mode);
 }
 
-if (DEBUGME) { syslog(LOG_INFO, 'instapi exec: ' . $cmd); }
-$out = exec($cmd, $exec_out);
+$pic_lockfile = fopen( LOCKFILE_DIR . '/' . $pic_id . '.lock', "w");
+
+if (flock($pic_lockfile, LOCK_EX)) {
+    if (DEBUGME) { syslog(LOG_INFO, 'instapi exec: ' . $cmd); }
+    $out = exec($cmd, $exec_out);
+
+    flock($pic_lockfile, LOCK_UN);
+    fclose($pic_lockfile);
+}
 
 echo "Executed " . $cmd . ' ---- ' . $out;
 

@@ -2,11 +2,6 @@ body {
     overflow: hidden;
     background: #aaa url(../img/rainbow_background2.png) no-repeat;
 }
-img, table, tr, td {
-    border: 0px;
-    margin: 0px;
-    padding: 0px;
-}
 body, #content, .layer, #flash, table.menu {
     width: 320px;
     height: 240px;
@@ -65,8 +60,9 @@ td.menu {
 	width: 180px;
 }
 #overlay_all_pics_options {
-	margin: 150px 50px 10px 50px;
-	height: 60px;
+	margin: 160px 50px 10px 50px;
+	height: 55px;
+	display: none;
 }
 
 #overlay_print {
@@ -77,7 +73,9 @@ td.menu {
 td.pic_options_menu_icon {
 	padding: 0px 5px 0px 10px;
 }
-img.all_pics_preview {
+td.all_pics_preview, img.all_pics_preview, tr.all_pics_preview {
+    height: 106px;
+}
+td.all_pics_preview, img.all_pics_preview {
     width: 160px;
-    height: 90px;
 }
