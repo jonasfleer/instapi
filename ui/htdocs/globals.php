@@ -15,5 +15,7 @@ define('ORIG_HEIGHT', 1080);
 define('ORIG_WIDTH', 1620);
 define('LOCKFILE_DIR', '/run/lock');
 define('RASPISTILL_LOCKFILEPATH', '/run/lock/raspistill.lock');
+define('COUNTDOWN_INITIAL', 5);
+define('COUNTDOWN_FOLLOWING', 2);
 
 ?>

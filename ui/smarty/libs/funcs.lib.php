@@ -11,6 +11,13 @@ function computeThumbfileName($pic_id, $geometry) {
 
 function printPics($pic_id) {
     
+    $out = exec('TEMP_DIR=' . TEMP_DIR . ' /bin/bash ' INSTAPI_DIR . '/libs/print.sh', $exec_out);
+
+}
+
+/*
+function printPics($pic_id) {
+    
     $masterimage_path = PRINT_MASTER_DIR . '/' . $pic_id . '.jpg';
     $pic1_path = PIC_DIR. '/' . $pic_id . '_1.jpg';
     $pic2_path = PIC_DIR. '/' . $pic_id . '_2.jpg';
@@ -40,5 +47,5 @@ function printPics($pic_id) {
 
     return $masterimage_path;
 }
-
+*/
 ?>

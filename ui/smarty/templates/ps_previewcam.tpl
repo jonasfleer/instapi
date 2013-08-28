@@ -19,8 +19,8 @@ $('#preview').load(function() {
 	<div id="countdown_time"></div>
 
 	<script type="text/javascript">
-	{literal}
-		var time_count=10;
+		var time_count={$smarty.const.COUNTDOWN_INITIAL};
+		{literal}
 		var pic_count=4;
 		$('#debug').text('time_count='+time_count + ' pic_count='+pic_count);
 
@@ -61,7 +61,9 @@ $('#preview').load(function() {
 				$('#flash').fadeIn(500, function () {
 				      $('#flash').fadeOut(500);
 				});
-				time_count=8;
+				{/literal}
+				time_count={$smarty.const.COUNTDOWN_FOLLOWING};
+				{literal}
 				pic_count=pic_count-1;
 				if (pic_count<=0) {
 					clearInterval(counter);
