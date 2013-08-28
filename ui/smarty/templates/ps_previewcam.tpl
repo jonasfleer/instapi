@@ -1,12 +1,12 @@
 {extends file="layout.tpl"}
 {block name=layer1}
 
-<img id="preview" src="http://{$smarty.server.SERVER_NAME}/raspistill.php?w=320&h=240&mode=show" width="320" height="240" border="0" />
+<img id="preview" src="http://{$smarty.server.SERVER_NAME}/raspistill.php?w={$smarty.const.SCREEN_WIDTH}&h={$smarty.const.SCREEN_HEIGHT}&mode=show" width="{$smarty.const.SCREEN_WIDTH}" height="{$smarty.const.SCREEN_HEIGHT}" border="0" />
 
 <script type="text/javascript">
 $('#preview').load(function() {
 	setTimeout(function(){
-		$("#preview").attr("src", "http://{$smarty.server.SERVER_NAME}/raspistill.php?w=320&h=240&mode=show&"+new Date().getTime());
+		$("#preview").attr("src", "http://{$smarty.server.SERVER_NAME}/raspistill.php?w={$smarty.const.SCREEN_WIDTH}&h={$smarty.const.SCREEN_HEIGHT}&mode=show&"+new Date().getTime());
 		},100);
 	});
 	</script>
@@ -37,7 +37,7 @@ $('#preview').load(function() {
 		function takeBigPic(pic_session_id, pic_num) {
 			$.ajax({
 			{/literal}
-			  url: 'http://{$smarty.server.SERVER_NAME}/raspistill.php?w=1920&h=1080&q=100&mode=save&id={$pic_session_id}' + '_' + pic_num + '&create_thumb=true'
+			  url: 'http://{$smarty.server.SERVER_NAME}/raspistill.php?w={$smarty.const.ORIG_WIDTH}&h={$smarty.const.ORIG_HEIGHT}&q=100&mode=save&id={$pic_session_id}' + '_' + pic_num + '&create_thumb=true'
 			  /* success: triggerThumbCreation(pic_session_id, pic_num) */
 			{literal}
 			});

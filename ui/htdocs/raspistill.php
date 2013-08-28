@@ -92,10 +92,10 @@ if (flock($raspistill_lockfile, LOCK_EX)) {
     if (flock($pic_lockfile, LOCK_EX)) {
         $out = exec($cmd, $exec_out);
 
-        if (DEBUGME) { 
+        //if (DEBUGME) { 
             // print_r($out . ': ' . implode(' ', $exec_out));
-            chmod($path, 0666); 
-        }
+            // chmod($path, 0666); 
+        //}
 
         flock($pic_lockfile, LOCK_UN);
         fclose($pic_lockfile);
