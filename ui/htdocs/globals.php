@@ -17,8 +17,8 @@ define('ORIG_HEIGHT', 540);
 define('ORIG_WIDTH', 810);
 define('LOCKFILE_DIR', '/run/lock');
 define('RASPISTILL_LOCKFILEPATH', '/run/lock/raspistill.lock');
-define('COUNTDOWN_INITIAL', 5);
-define('COUNTDOWN_FOLLOWING', 2);
+define('COUNTDOWN_INITIAL', 10);
+define('COUNTDOWN_FOLLOWING', 7);
 define('PRINT_LOGPATH', '/var/log/instapi_print.log');
 
 ?>
