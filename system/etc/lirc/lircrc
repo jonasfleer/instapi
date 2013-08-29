@@ -90,7 +90,7 @@ end
 # Keyboard: Select/PlayPause
 begin
 	remote = blackwhite
-	button = KEY_EQUAL
+	button = KEY_PLAY
 	prog   = irxevent
 	config = Key ALT-s CurrentWindow
 end

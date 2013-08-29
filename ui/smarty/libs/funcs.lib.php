@@ -1,5 +1,7 @@
 <?php
 
+
+
 function genSessionId() {
     return date("Ymd-His") . "-" . sprintf( '%04x%04x', mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ) );
 }
@@ -9,11 +11,6 @@ function computeThumbfileName($pic_id, $geometry) {
     return $pic_id . '_' . $geometry_identifier;
 }
 
-function printPics($pic_id) {
-    
-    $out = exec('TEMP_DIR=' . TEMP_DIR . ' /bin/bash ' INSTAPI_DIR . '/libs/print.sh', $exec_out);
-
-}
 
 /*
 function printPics($pic_id) {

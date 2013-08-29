@@ -83,3 +83,13 @@ sudo apt-get install python-cups
 sudo usermod -aG lpadmin pi
 sudo /etc/init.d/cups start
 sudo /etc/init.d/avahi-daemon
+
+cd /tmp/
+cvs -d:pserver:anonymous@gimp-print.cvs.sourceforge.net:/cvsroot/gimp-print login
+cvs -z3 -d:pserver:anonymous@gimp-print.cvs.sourceforge.net:/cvsroot/gimp-print co -P print
+cd print
+sudo apt-get install autoconf libtool gettext automake
+./autogen
+make
+sudo make install
+
