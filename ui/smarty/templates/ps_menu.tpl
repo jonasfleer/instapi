@@ -1,4 +1,8 @@
 {extends file="layout.tpl"}
+{block name=layer2}
+	<img src="img/photobooth.png" id="photobooth_logo" />
+{/block}
+
 {block name=layer3}
 
 	<div class="overlay" id="overlay_menu">

@@ -55,7 +55,7 @@ td.menu {
 	font-color: black;
 }
 #overlay_menu {
-	margin: 120px 20px 10px 120px;
+	margin: 180px 20px 10px 120px;
 	height: 30px;
 	width: 180px;
 }
@@ -78,4 +78,7 @@ td.all_pics_preview, img.all_pics_preview, tr.all_pics_preview {
 }
 td.all_pics_preview, img.all_pics_preview {
     width: 160px;
+}
+#photobooth_logo {
+	margin: 2px 0px 0px 35px;
 }
