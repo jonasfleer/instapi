@@ -27,14 +27,14 @@ body, #content, .layer, #flash, table.menu {
     display: none;
 }
 #countdown_foto {
-    color: black;
+    color: #6bcc70;
     font-size: 60px;
     position: absolute;
     top: 20px;
     left: 65px;
 }
 #countdown_time {
-    color: black;
+    color: #6bcc70;
     font-size: 120px;
     position: absolute;
     top: 80px;
