@@ -18,6 +18,7 @@ if [ "$_IP" ]; then
 fi
 
 chmod a+rw /dev/vchiq
+lpadmin -p cp900_520 -E
 touch /var/log/instapi_print.log
 chown www-data: /var/log/instapi_print.log
 chmod 0666 /var/log/instapi_print.log
